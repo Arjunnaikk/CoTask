@@ -32,7 +32,6 @@ export function DialogDemo({ email }) {
 
     const handleSubmit = async (e) => {
       e.preventDefault()
-    //   console.log("Submitting title:", title) // Debug log
 
       if (!title.trim()) return
       
@@ -41,7 +40,6 @@ export function DialogDemo({ email }) {
           { title: title.trim(),email }, // Make sure to send the title in the correct format
           {
             onSuccess: (data) => {
-              console.log("Success:", data)
               router.push(`/mypage/`)
               setTitle('')
               setOpen(false)

@@ -54,8 +54,6 @@ const Page = ({ params }) => {
     filteredTasks: [],
     selectedTeam: params.teamId
   });
-  console.log("Helooooo000000000000000", teamData)
-  console.log("Page State:", pageState.task);
 
     useEffect(() => {
       const filtered = pageState.tasks.filter(task => 
@@ -69,7 +67,6 @@ const Page = ({ params }) => {
 
   useEffect(() => {
     if (myTeamTask) {
-      console.log("Fetched Tasks:", myTeamTask);
       setPageState((prevState) => ({
         ...prevState,
         tasks: myTeamTask,
@@ -110,7 +107,6 @@ const Page = ({ params }) => {
 
   const handleTeamDelete = async (teamName) => {
     try {
-      console.log("helo broda", teamName)
       await deleteTeamMutation.mutateAsync({
         userMail: session?.user?.email,
         teamName: teamName,
@@ -131,7 +127,6 @@ const Page = ({ params }) => {
   }
 
   const handleStatusChange = async (newStatus) => {
-    console.log("Work man it aint funny")
     if (!pageState.task) return;
 
     try {
@@ -191,7 +186,6 @@ const Page = ({ params }) => {
     }
   };
 
-  console.log("taskssss name", params.taskId)
 
   return (
     <>

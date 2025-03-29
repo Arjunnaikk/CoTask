@@ -38,7 +38,6 @@ const Page = ({ params }) => {
 
     const handleTeamDelete = async (teamName) => {
         try {
-          console.log("helo broda", teamName)
           await deleteTeamMutation.mutateAsync({
             userMail: session?.user?.email,
             teamName: teamName,

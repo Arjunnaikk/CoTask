@@ -29,7 +29,6 @@ export function DialogDemo({ email, username}) {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
-    console.log(form)
   }
 
   const handleAssignToChange = (e) => {
@@ -50,7 +49,6 @@ export function DialogDemo({ email, username}) {
         },
         {
           onSuccess: (data) => {
-            console.log("Success:", data)
             router.push(`/mygroups/${form.title}/task/8`)
             setForm({ title: '', user_array: [] }) // Reset form state
             setOpen(false)

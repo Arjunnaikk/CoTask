@@ -37,12 +37,10 @@ export function Create({ userMail, teamId }) {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
-    console.log("Form updated:", form)
   }
 
   const handlePriorityChange = (value) => {
     setForm(prev => ({ ...prev, priority: value }))
-    console.log("Priority updated:", value)
   }
 
   const handleDateChange = (date) => {
@@ -51,8 +49,6 @@ export function Create({ userMail, teamId }) {
     } else {
       setForm(prev => ({ ...prev, end_d: new Date(date).toISOString() }));
     }
-    console.log(typeof form.end_d);
-    console.log(form.end_d);
   };
 
   const handleAssignToChange = (e) => {
@@ -75,7 +71,6 @@ export function Create({ userMail, teamId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting form:", form);
 
     if (!form.title.trim()) {
       alert("Please enter a title");
@@ -90,7 +85,6 @@ export function Create({ userMail, teamId }) {
         },
         {
           onSuccess: (data) => {
-            console.log("Task created successfully:", data);
             resetForm();
             setOpen(false);
             toast({

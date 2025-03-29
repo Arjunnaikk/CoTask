@@ -71,37 +71,7 @@ const TESTIMONIALS = [
 export default function Home() {
   const { data: session } = useSession()
   const { data: userData, isLoading, error } = useGetUserQuery()
-  const mutation = useCreateUserMutation()
-  // console.log(session?.user?.image)
-  // console.log("WTF",userData.user[0])
-  // console.log("WTF",userData?.user[0])
   const targetedGmail = userData?.user.some(u => u.gmail == session?.user?.email)
-    console.log(targetedGmail)
-
-    // if(!targetedGmail){
-    //   try{
-    //     const result = await mutation.mutateAsync(
-    //     {
-    //       name: session?.user?.name,
-    //       email: session?.user?.email,
-    //       image: session?.user?.image
-    //     },
-    //     {
-    //       onSuccess: (data) => {
-    //         console.log("Task created successfully:", data);
-    //       },
-    //       onError: (error) => {
-    //         console.error("Mutation error:", error);
-    //         console.error("Error response:", error.response?.data);
-    //         alert("Failed to create task: " + (error.response?.data?.message || error.message));
-    //       },
-    //     })
-    //   }
-    //   catch (error) {
-    //     console.error("Submit error:", error);
-    //     alert("Error creating task. Please try again.");
-    //   }
-    // }
 
     useEffect(() => {
       const handleCreateUser = async () => {
@@ -116,7 +86,6 @@ export default function Home() {
               gmail: session?.user?.email,
               imgText: session?.user?.image,
             });
-            console.log("User created successfully");
           } catch (error) {
             console.error("Failed to create user:", error);
             alert("Error creating user. Please try again.");

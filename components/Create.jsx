@@ -38,12 +38,10 @@ export function Create({ userMail, listId }) {
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
-    console.log("Form updated:", form)
   }
 
   const handlePriorityChange = (value) => {
     setForm(prev => ({ ...prev, priority: value }))
-    console.log("Priority updated:", value)
   }
 
   const handleDateChange = (date) => {
@@ -52,8 +50,6 @@ export function Create({ userMail, listId }) {
     } else {
         setForm(prev => ({ ...prev, end_d: new Date(date).toISOString() }));
     }
-    console.log(typeof form.end_d); // Outputs: 'string'
-    console.log(form.end_d); // Outputs the ISO string representation of the date
 };
   
   const resetForm = () => {
@@ -70,7 +66,6 @@ export function Create({ userMail, listId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitting form:", form);
   
     if (!form.title.trim()) {
       toast({
@@ -89,7 +84,6 @@ export function Create({ userMail, listId }) {
         },
         {
           onSuccess: (data) => {
-            console.log("Task created successfully:", data);
             toast({
               title: "Success",
               description: "Task created successfully",
