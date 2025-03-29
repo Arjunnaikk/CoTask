@@ -124,7 +124,7 @@ export default function Home() {
                   Collaborate. Manage. Succeed.
                 </h1>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-                  Streamline your team's workflow with our powerful and intuitive task management platform.
+                  Streamline your team&apos;s workflow with our powerful and intuitive task management platform.
                 </p>
               </div>
               <div className="space-x-4">
@@ -169,7 +169,7 @@ export default function Home() {
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Ready to boost your team's productivity?
+                  Ready to boost your team&apos;s productivity?
                 </h2>
                 <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
                   Sign up now and experience the power of seamless collaboration.
