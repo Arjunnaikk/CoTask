@@ -15,8 +15,10 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useCreateListMutation } from "@/services/mutations"
+import { useToast } from "@/hooks/use-toast"
 
 export function DialogDemo({ email }) {
+    const { toast } = useToast()
     const [title, setTitle] = useState('')
     const [open, setOpen] = useState(false)
     const router = useRouter()
@@ -43,10 +45,20 @@ export function DialogDemo({ email }) {
               router.push(`/mypage/`)
               setTitle('')
               setOpen(false)
+              toast({
+                title: "List created successfully",
+                description: "Your list has been created.",
+              })
+
             },
             onError: (error) => {
               console.error("Mutation error:", error)
               alert("Failed to create list: " + error.message)
+              toast({
+                title: "Error",
+                description: "Failed to create list. Please try again.",
+                variant: "destructive",
+              })
             },
           }
         )

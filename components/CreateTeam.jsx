@@ -17,8 +17,10 @@ import { Plus } from 'lucide-react'
 import SelectDemo from "./SelectDemo"
 import DatePickerDemo from "./DatePicker"
 import { useCreateMyTeamTaskMutation } from "@/services/mutations"
+import { useToast } from "@/hooks/use-toast"
 
 export function Create({ userMail, teamId }) {
+  const { toast } = useToast();
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -91,11 +93,21 @@ export function Create({ userMail, teamId }) {
             console.log("Task created successfully:", data);
             resetForm();
             setOpen(false);
+            toast({
+              title: "Success",
+              description: "Task created successfully",
+              variant: "dark",
+            });
           },
           onError: (error) => {
             console.error("Mutation error:", error);
             console.error("Error response:", error.response?.data);
             alert("Failed to create task: " + (error.response?.data?.message || error.message));
+            toast({
+              title: "Error",
+              description: "Failed to create task: " + (error.response?.data?.message || error.message),
+              variant: "destructive",
+            });
           },
         }
       );

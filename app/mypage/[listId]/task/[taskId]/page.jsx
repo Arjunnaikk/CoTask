@@ -24,6 +24,9 @@ import SkeletonDemo from "@/components/SkeletonDemo";
 import { Input } from "@/components/ui/input";
 import { CheckCheck } from "lucide-react";
 import { CircleAlert } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import AlertDialogDemo from "@/components/AlertDialogDemo";
+
 
 const STATUS_COLORS = {
   'Not Started': 'bg-red-500',
@@ -36,6 +39,7 @@ const ErrorComponent = ({ error }) => <div>Error: {error?.message || "An error o
 
 const Page = ({ params }) => {
   const router = useRouter();
+  const {toast} = useToast();
   const { data: session, status } = useSession();
   
   const [pageState, setPageState] = useState({
@@ -108,10 +112,25 @@ const Page = ({ params }) => {
       await deleteListMutation.mutateAsync({
         userMail: session?.user?.email,
         name: listName,
-      });
-      router.push('/mypage');
+      },
+    {
+      onSuccess: () => {
+        toast({
+          title: "List deleted",
+          description: "List deleted successfully",
+          variant: "dark",
+        });
+        router.push('/mypage');
+      }
+    }
+    );
     } catch (error) {
       console.error("Error deleting task:", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete list",
+        variant: "destructive",
+      });
     }
   }
 
@@ -132,9 +151,20 @@ const Page = ({ params }) => {
         task: null
       }));
       
+      toast({
+        title: "Success",
+        description: "Task deleted successfully",
+        variant: "dark",
+      });
+      
       router.push(`/mypage/${params.listId}/task/0`);
     } catch (error) {
       console.error("Error deleting task:", error);
+      toast({
+        title: "Error",
+        description: "Failed to delete task. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -280,7 +310,10 @@ const Page = ({ params }) => {
     <>
       <div className='bg-zinc-900 p-4 flex justify-between items-center'>
         <h1 className='text-2xl font-semibold text-white truncate'>{pageState.task.title}</h1>
-        <Trash2 onClick={handleDelete} className="text-zinc-400 hover:text-red-600 cursor-pointer transition-colors" />
+        <AlertDialogDemo 
+    isSelected2={true}
+    handleListDelete={handleDelete}
+  />
       </div>
       <div className='flex-grow overflow-y-auto p-6 space-y-6'>
         <div>
