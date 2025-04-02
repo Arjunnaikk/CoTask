@@ -84,7 +84,7 @@ const Page = ({ params }) => {
                     </div>
                 </div>
                 <div className='fixed bottom-8'>
-                    <DialogDemoTeam email={session?.user?.email} />
+                    <DialogDemoTeam email={session?.user?.email} username={session?.user?.name}/>
                 </div>
             </div>
 
